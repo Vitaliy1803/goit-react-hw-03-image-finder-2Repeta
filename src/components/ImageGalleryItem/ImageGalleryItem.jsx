@@ -1,7 +1,9 @@
+import { ImageGalleryItemImg, ImageGalleryItemLi } from "./ImageGalleryItem.styled";
+
 export default function ImageGallaryItem({ smallImgURL, id }) {
   return (
-    <li>
-      <img src={smallImgURL} alt={id} />
-    </li>
+    <ImageGalleryItemLi>
+      <ImageGalleryItemImg src={smallImgURL} alt={id} />
+    </ImageGalleryItemLi>
   );
 }

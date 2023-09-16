@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ImageGallary from 'components/ImageGallery/ImageGallery';
 import Button from 'components/Button/Button';
+import Loader from 'components/Loader/Loader';
 
 export default class PixabayApi extends Component {
   state = {
@@ -13,22 +14,11 @@ export default class PixabayApi extends Component {
     page: 1,
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    const QUERY = this.props.query;
-    const PAGE = this.state.page;
-
-    if (prevProps.query !== this.props.query) {
-      this.setState(
-        { status: 'pending', error: null, images: [], page: 1, totalHits: null },
-        () => {
-          this.fetchImage(QUERY, PAGE);
-        }
-      );
-    }
-  }
+  
 
   fetchImage = (QUERY, PAGE) => {
     const { BASE_URL, API_KEY } = this.state;
+    
 
     fetch(
       `${BASE_URL}?q=${QUERY}&page=${PAGE}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
@@ -47,21 +37,35 @@ export default class PixabayApi extends Component {
           images: [...prevState.images, ...data.hits],
           status: 'resolved',
           totalHits: data.totalHits,
+          query: '',
+          page: PAGE
         }));
       })
       .catch(error => this.setState({ error, status: 'rejected' }));
   };
 
   handleMoreLoader = () => {
-    this.setState(
-      prevState => ({ page: prevState.page + 1, status: 'pending' }),
-      () => {
-        const { query } = this.props;
-        const { page } = this.state;
-        this.fetchImage(query, page);
-      }
-    );
+    const { query } = this.props;
+    const { page } = this.state;
+  
+    this.setState({ status: 'pending' });
+  
+    this.fetchImage(query, page + 1);
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    const QUERY = this.props.query;
+    const PAGE = this.state.page;
+
+    if (prevProps.query !== this.props.query) {
+      this.setState(
+        { status: 'pending', error: null, images: [], page: 1, totalHits: null },
+        () => {
+          this.fetchImage(QUERY, PAGE);
+        }
+      );
+    }
+  }
 
   render() {
     const { error, status, totalHits, images } = this.state;
@@ -71,7 +75,7 @@ export default class PixabayApi extends Component {
     }
 
     if (status === 'pending') {
-      return <div>Загрузка...</div>;
+      return <div><Loader/></div>;
     }
 
     if (status === 'rejected') {
