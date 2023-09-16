@@ -46,12 +46,16 @@ export default class PixabayApi extends Component {
 
   handleMoreLoader = () => {
     const { query } = this.props;
-    const { page } = this.state;
-  
-    this.setState({ status: 'pending' });
-  
-    this.fetchImage(query, page + 1);
+    
+    this.setState(prevState => ({ 
+      status: 'pending', 
+      page: prevState.page + 1 
+    }), () => {
+      const newPage = this.state.page;
+      this.fetchImage(query, newPage);
+    });
   };
+  
 
   componentDidUpdate(prevProps, prevState) {
     const QUERY = this.props.query;

@@ -19,7 +19,18 @@ export default class App extends Component {
     return (
       <div>
         <Searchbar handleSearch={this.handleSearch} />
-        <ToastContainer autoClose={3000}/>
+        <ToastContainer 
+        position="top-left"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        />
         <PixabayApi query={this.state.query}/>
       </div>
     );
