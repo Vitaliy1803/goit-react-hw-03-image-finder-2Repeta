@@ -13,7 +13,6 @@ export default class ImageGallary extends Component {
 
   componentDidMount() {
     document.addEventListener('click', e => {
-        console.log('Image clicked', e.target.alt);
       if (e.target.nodeName !== 'IMG') {
         this.setState({ showModal: false });
         

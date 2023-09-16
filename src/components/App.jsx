@@ -10,7 +10,7 @@ export default class App extends Component {
   };
 
   handleSearch = query => {
-    console.log('query :>>', query);
+    // console.log('query :>>', query);
     this.setState({query})
   };
 
