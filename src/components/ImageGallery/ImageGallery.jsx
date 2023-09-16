@@ -3,6 +3,7 @@ import ImageGallaryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import { nanoid } from 'nanoid';
 import Modal from 'components/Modal/Modal';
 import { ImageGalleryUl } from './ImageGallery.styled';
+import PropTypes from 'prop-types'; 
 
 export default class ImageGallary extends Component {
   state = {
@@ -58,3 +59,15 @@ export default class ImageGallary extends Component {
     );
   }
 }
+
+ImageGallary.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      largeImageURL: PropTypes.string.isRequired,
+      webformatURL: PropTypes.string.isRequired,
+    })
+  ),
+};
+
+

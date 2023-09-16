@@ -35,11 +35,11 @@ export const SearchFormButton = styled.button`
   height: 48px;
   border: 0;
   //background-image: url('/src/img/magnifying_glass.png');
-  background-size: 40%;
-  background-repeat: no-repeat;
+  //background-size: 40%;
+  //background-repeat: no-repeat;
   background-position: center;
   opacity: 0.6;
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  //transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none;
 

@@ -6,7 +6,7 @@ import {
   SearchForm,
   SearchFormButton,
   SearchFormInput,
-  SearchFormButtonSpan,
+
 } from './Searchbar.styled';
 
 export default class Searchbar extends Component {
@@ -34,9 +34,9 @@ export default class Searchbar extends Component {
         <SearchbarDiv className="searchbar">
           <SearchForm className="form" onSubmit={this.handleOnSubmin}>
             <SearchFormButton type="submit" className="button">
-              <SearchFormButtonSpan className="button-label">
+              <SearchFormButton className="button-label">
                 <BsSearch />
-              </SearchFormButtonSpan>
+              </SearchFormButton>
             </SearchFormButton>
 
             <SearchFormInput
@@ -55,3 +55,4 @@ export default class Searchbar extends Component {
     );
   }
 }
+

@@ -71,7 +71,7 @@ export default class PixabayApi extends Component {
     const { error, status, totalHits, images } = this.state;
 
     if (status === 'idle') {
-      return <div>Напиши щось, МУДАК!</div>;
+      return <div></div>;
     }
 
     if (status === 'pending') {

@@ -1,4 +1,5 @@
 import { ImageGalleryItemImg, ImageGalleryItemLi } from "./ImageGalleryItem.styled";
+import PropTypes from 'prop-types';
 
 export default function ImageGallaryItem({ smallImgURL, id }) {
   return (
@@ -7,3 +8,8 @@ export default function ImageGallaryItem({ smallImgURL, id }) {
     </ImageGalleryItemLi>
   );
 }
+
+ImageGallaryItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  smallImgURL: PropTypes.string.isRequired,
+};
